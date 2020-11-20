@@ -1,0 +1,1 @@
+##This is a logging process that automatically get updated when our program encounter errors##
