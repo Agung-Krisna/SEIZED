@@ -91,7 +91,39 @@ int main(int argc, char *argv[]){
                 running = 0;//changing the value of running.
         }
         SDL_UpdateWindowSurface(window);//updating the window in each turn
+        
+        // determine velocity
+        x_vel = y_vel = 0;
+        if (up && !down) y_vel = -SPEED;
+        if (down && !up) y_vel = SPEED;
+        if (left && !right) x_vel = -SPEED;
+        if (right && !left) x_vel = SPEED;
+
+        // update positions
+        x_pos += x_vel / 60;
+        y_pos += y_vel / 60;
+
+        // collision detection with bounds
+        if (x_pos <= 0) x_pos = 0;
+        if (y_pos <= 0) y_pos = 0;
+        if (x_pos >= 1080 - dest.w) x_pos = 1080 - dest.w;
+        if (y_pos >= 720 - dest.h) y_pos = 720 - dest.h;
+
+        // set the positions in the struct
+        dest.y = (int) y_pos;
+        dest.x = (int) x_pos;
+        
+        // clear the window
+        SDL_RenderClear(renderer);
+
+        /* draw the image to the window */
+        SDL_RenderCopy(renderer, tex, NULL, &dest);	//doing the processing in the background
+        SDL_RenderPresent(renderer);	//presenting the image to the user
+
+        // wait 1/60th of a second
+        SDL_Delay(1000/60);
     }
+   }
     
     /*SELF EXPLANATORY*/
     SDL_DestroyTexture(tex);
