@@ -114,7 +114,7 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	if(!man->shooting)
 	{
-		if(state[SDL_SCANCODE_LEFT])
+		if(state[SDL_SCANCODE_LEFT] || state[SDL_SCANCODE_A])
 		{
 		man->x -= 3;
 		man->chWalk = 1;
@@ -126,7 +126,7 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 			man->imageNow %= 4;  
 		}  
 		}
-		else if(state[SDL_SCANCODE_RIGHT])
+		else if(state[SDL_SCANCODE_RIGHT] || state[SDL_SCANCODE_D])
 		{
 		man->x += 3;
 		man->chWalk = 1;
@@ -312,7 +312,7 @@ int main(int argc, char *argv[])
 	SDL_RenderSetLogicalSize(renderer, 320, 240);
 
 	
-	SDL_Surface *sheet = IMG_Load("goodguy.png");
+	SDL_Surface *sheet = IMG_Load("Resources/goodguy.png");
 	if(!sheet)
 	{
 		printf("Cannot find sheet\n");
@@ -323,7 +323,7 @@ int main(int argc, char *argv[])
 	SDL_FreeSurface(sheet);
 	
 	//load enemy
-	sheet = IMG_Load("badguy.png");
+	sheet = IMG_Load("Resources/badguy.png");
 	if(!sheet)
 	{
 		printf("Cannot find sheet\n");
@@ -334,7 +334,7 @@ int main(int argc, char *argv[])
 	SDL_FreeSurface(sheet);  
 
 	//load the bg  
-	SDL_Surface *bg = IMG_Load("background.png");
+	SDL_Surface *bg = IMG_Load("Resources/background.png");
 	
 	if(!sheet)
 	{
