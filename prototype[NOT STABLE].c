@@ -120,10 +120,10 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 		man->chWalk = 1;
 		man->facingLeft = 1;
 		
-		if(globalTime % 6 == 0)
+		if(globalTime % 9 == 0)
 		{
 			man->imageNow++;
-			man->imageNow %= 4;  
+			man->imageNow %= 8;  
 		}  
 		}
 		else if(state[SDL_SCANCODE_RIGHT] || state[SDL_SCANCODE_D])
@@ -132,16 +132,16 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 		man->chWalk = 1;
 		man->facingLeft = 0;
 		
-		if(globalTime % 6 == 0)
+		if(globalTime % 9 == 0)
 		{
 			man->imageNow++;
-			man->imageNow %= 4;  
+			man->imageNow %= 8;  
 		}  
 		}
 		else
 		{
 		man->chWalk = 0;
-		man->imageNow = 4;
+		man->imageNow = 8;
 		}
 	}
 
@@ -149,12 +149,12 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 	{
 		if(state[SDL_SCANCODE_X] || state[SDL_SCANCODE_Z])//shoot using x and z
 		{
-		if(globalTime % 6 == 0)
+		if(globalTime % 9 == 0)
 		{
-			if(man->imageNow == 4)         
-			man->imageNow = 5;
+			if(man->imageNow == 8)         
+			man->imageNow = 9;
 			else
-			man->imageNow = 4;
+			man->imageNow = 8;
 			
 			if(!man->facingLeft)
 			{
@@ -170,7 +170,7 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 		}
 		else 
 		{
-		man->imageNow = 4;  
+		man->imageNow = 8;  
 		man->shooting = 0;
 		}
 	}
@@ -284,7 +284,7 @@ int main(int argc, char *argv[])
 	Entity man;
 	man.x = 200;
 	man.y = 260;
-	man.imageNow = 4;  
+	man.imageNow = 8;  
 	man.alive = 1;
 	man.visible = 1;
 	man.facingLeft = 0;
