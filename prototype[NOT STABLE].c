@@ -230,9 +230,9 @@ void Logic(Entity *man)
 {
 	man->y += man->dy;
 	man->dy += 0.5;
-	if(man->y > 60)
+	if(man->y > 285)
 	{
-		man->y = 60;
+		man->y = 285;
 		man->dy = 0;
 	}
 	
@@ -282,15 +282,15 @@ int main(int argc, char *argv[])
 	SDL_Init(SDL_INIT_VIDEO);              // Initialize SDL2
 	
 	Entity man;
-	man.x = 50;
-	man.y = 0;
+	man.x = 200;
+	man.y = 260;
 	man.imageNow = 4;  
 	man.alive = 1;
 	man.visible = 1;
 	man.facingLeft = 0;
 	
-	enemy.x = 250;
-	enemy.y = 60;
+	enemy.x = 400;
+	enemy.y = 285;
 	enemy.imageNow = 4;
 	enemy.facingLeft = 1;  
 	enemy.alive = 1;
@@ -309,7 +309,7 @@ int main(int argc, char *argv[])
     
 	renderer = SDL_CreateRenderer(window, -1, render_flags);//making the renderer
 
-	SDL_RenderSetLogicalSize(renderer, 320, 240);
+	SDL_RenderSetLogicalSize(renderer, 540, 360);
 
 	
 	SDL_Surface *sheet = IMG_Load("Resources/goodguy.png");
