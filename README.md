@@ -1,8 +1,8 @@
 # SEIZED
-A Retro-inspired shoot 'em up game. Created by Me, Tata, and Dicky.
+A Retro-inspired shoot 'em up game. Created by [Me](https://github.com/Agung-Krisna), [Tata](https://github.com/tatanofera), and [Dicky](https://github.com/dyudhani).
+## Why does this game created?
 
-# Installation 
-Currently not for public use, still in development process.
+This game is aimed to provide us an insight about the process of game programming and game development in general. This game features the core concepts in game, which is character movement both in horizontal and vertical plane, ability to shoot an object, and the process of animating sprites during various character actions. It took us several months to get this done, but we're very happy with the results.
 
 ### Instructions for the devs.
 1. Please make sure you have installed [SDL.](https://wiki.libsdl.org/Installation)
