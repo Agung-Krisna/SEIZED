@@ -135,7 +135,7 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 		if(globalTime % 9 == 0)
 		{
 			man->imageNow++;
-			man->imageNow %= 8;  
+			man->imageNow %= 4;  
 		}  
 		}
 		else
@@ -152,9 +152,9 @@ int Event(SDL_Window *window, Entity *man)//processing the events during the gam
 		if(globalTime % 9 == 0)
 		{
 			if(man->imageNow == 8)         
-			man->imageNow = 9;
+			man->imageNow = 0;
 			else
-			man->imageNow = 8;
+			man->imageNow = 0;
 			
 			if(!man->facingLeft)
 			{
@@ -253,16 +253,21 @@ void Logic(Entity *man)
 	
 	if(enemy.alive == 0 && globalTime % 6 == 0)
 	{
-		if(enemy.imageNow < 6)
-		enemy.imageNow = 6;
-		else if(enemy.imageNow >= 6)
+		if(enemy.imageNow < 3)
+		enemy.imageNow = 3;
+		else if(enemy.imageNow >= 3)
 		{
-		enemy.imageNow++;
-		if(enemy.imageNow > 7)
-		{
-			enemy.visible = 0;
-			enemy.imageNow = 7;      
-		}
+			enemy.imageNow++;
+			if(enemy.imageNow > 5)
+			{
+				enemy.visible = 0;
+				enemy.imageNow = 5;
+				enemy.imageNow++;
+				if(enemy.imageNow > 9){
+					enemy.visible = 0;
+					enemy.imageNow = 6;
+				}
+			}
 		}
 	}
 	
@@ -282,9 +287,9 @@ int main(int argc, char *argv[])
 	SDL_Init(SDL_INIT_VIDEO);              // Initialize SDL2
 	
 	Entity man;
-	man.x = 200;
-	man.y = 260;
-	man.imageNow = 8;  
+	man.x = 60;
+	man.y = 180;
+	man.imageNow = 5;  
 	man.alive = 1;
 	man.visible = 1;
 	man.facingLeft = 0;
@@ -300,8 +305,8 @@ int main(int argc, char *argv[])
 	window = SDL_CreateWindow   ("SEIZED",               //title
                                 SDL_WINDOWPOS_CENTERED,  //initial position for x axis
                                 SDL_WINDOWPOS_CENTERED,  //initial position for y axis
-                                1080,                     //width (pixels)
-                                720,                     //height (pixels)
+                                540,                     //width (pixels)
+                                360,                     //height (pixels)
                                 0);                      //flags
 
 
@@ -323,7 +328,7 @@ int main(int argc, char *argv[])
 	SDL_FreeSurface(sheet);
 	
 	//load enemy
-	sheet = IMG_Load("Resources/badguy.png");
+	sheet = IMG_Load("Resources/enemy.png");
 	if(!sheet)
 	{
 		printf("Cannot find sheet\n");
@@ -346,7 +351,7 @@ int main(int argc, char *argv[])
 	SDL_FreeSurface(bg);
 
 	//load the bullet  
-	SDL_Surface *bullet = IMG_Load("bullet.png");
+	SDL_Surface *bullet = IMG_Load("Resources/bullet.png");
 	
 	if(!bullet)
 	{
