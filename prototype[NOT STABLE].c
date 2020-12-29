@@ -296,7 +296,7 @@ int main(int argc, char *argv[])
 	
 	enemy.x = 400;
 	enemy.y = 285;
-	enemy.imageNow = 4;
+	enemy.imageNow = 1;
 	enemy.facingLeft = 1;  
 	enemy.alive = 1;
 	enemy.visible = 1;
